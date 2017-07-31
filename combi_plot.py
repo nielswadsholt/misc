@@ -37,27 +37,3 @@ def combi_plot(y_vals, lbls, x_vals = None, logplot = False, y_lbl = '', x_lbl =
     plt.show()
 
 
-# =================================== Test ===================================
-
-def test():
-    start = 10
-    stop = 1000
-    y_vals = [[math.log(i) for i in range(start, stop)],
-              [i for i in range(start, stop)],
-              [i**2 for i in range(start, stop)],
-              [i**3 for i in range(start, stop)]]
-    lbls = ['Logarithmic', 'Linear', 'Quadratic', 'Cubic']
-
-    # Without x values defined
-    combi_plot(y_vals, lbls)
-
-    # With x values defined
-    combi_plot(y_vals, lbls, [i*1000 for i in range(100, 100 + stop - start)])
-
-    # Log-log plot
-    combi_plot(y_vals, lbls, range(start, stop), True)
-
-    # With everything defined
-    combi_plot(y_vals, lbls, range(100, 100 + stop - start), True, 'Y-values', 'X-values', 'Combi Plot', ':')
-    
-# test()

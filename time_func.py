@@ -48,7 +48,7 @@ def test3(a_str, int1, int2):
         count += 1
     print a_str + str(int1+int2)
 
-def test():
+def time_func_test():
     # Run tests a couple of times for higher accuracy
     for i in range(3):
         print time_func(test1)("test1")

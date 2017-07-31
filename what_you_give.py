@@ -8,7 +8,3 @@ def what_you_get(what_you_give):
     what_you_give -= 1
     return what_you_get(what_you_give) + 1
 
-
-# =================================== Test ===================================
-# print what_you_get(10)
-
