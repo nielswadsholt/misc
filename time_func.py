@@ -1,20 +1,23 @@
 """
 Timer for meassuring running time of functions with varying numbers of parameters.
 
-By Niels Wadsholt, January 2016
+Copyright (C) 2016-17 Niels Wadsholt
 """
 
 
 def time_func(func):
     """
-    Returns a function timer with the number of parameters defined by
-    the timed function. The timer returns elapsed time in milliseconds.
+    Returns a function timer.
+
+    The number of parameters is defined by the timed function. Elapsed time is
+    counted in milliseconds.
     """
     
     def timer(*args):
         """
-        Function timer with the number of parameters defined by
-        the timed function. Returns elapsed time in milliseconds.
+        Returns the running time of a function in milliseconds.
+        
+        The number of parameters is defined by the timed function.
         """
         
         import time

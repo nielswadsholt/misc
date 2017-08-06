@@ -1,3 +1,9 @@
+'''
+Test module for the misc library
+
+Copyright (C) 2017 Niels Wadsholt
+'''
+
 import time
 import numpy as np
 from base_converter import *
@@ -225,7 +231,7 @@ def fib(n):
     Returns the nth Fibonacci number.
     '''
     if n <= 2:
-        return (n > 0) * 1
+        return n > 0
     else:
         return fib(n - 1) + fib(n - 2)
 
@@ -235,8 +241,8 @@ def fib_dp(n, memo = {}):
     '''
     if n in memo:
         return memo[n]
-    if n <= 2:
-        return (n > 0) * 1
+    elif n <= 2:
+        return n > 0
     else:
         memo[n] = fib_dp(n - 1, memo) + fib_dp(n - 2, memo)
         return memo[n]

@@ -1,7 +1,15 @@
+'''
+Base converter
+
+Copyright (C) 2015-17 Niels Wadsholt
+'''
+
 def convert(num, old_base, new_base):
     '''
-    Converts an integer from one base to another. Numbers are represented as
-    actual base-10 integers (not strings). Works for base 2 through 10.
+    Converts an integer from one base to another.
+    
+    Numbers are represented as actual base-10 integers (not strings). Works for
+    base 2 through 10.
     '''
     
     assert 1 < old_base < 11 > new_base > 1, "The base must be between 2 and 10."
@@ -26,7 +34,7 @@ def convert(num, old_base, new_base):
 
 def dec_to_bin(num):
     '''
-    Converts a base-10 integer to its binary representation
+    Converts a base-10 integer to its binary representation.
     '''
     
     return convert(num, 10, 2)
@@ -34,7 +42,7 @@ def dec_to_bin(num):
 
 def bin_to_dec(num):
     '''
-    Converts a binary integer to its base-10 representation
+    Converts a binary integer to its base-10 representation.
     '''
     
     return convert(num, 2, 10)

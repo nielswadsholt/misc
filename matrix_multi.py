@@ -1,5 +1,8 @@
-# Matrix multiplicator
-# By Niels Wadsholt, October 2015
+'''
+Matrix multiplicator
+
+Copyright (C) 2015 Niels Wadsholt
+'''
 
 def matrix_multi(m1, m2):
     """
@@ -14,7 +17,7 @@ def matrix_multi(m1, m2):
 
 def m_print(m):
     """
-    Pretty-prints a lists of lists matrix
+    Pretty-prints a list-of-lists matrix.
     """
     
     for row in range(len(m)):
