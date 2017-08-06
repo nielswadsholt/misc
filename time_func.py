@@ -8,13 +8,13 @@ By Niels Wadsholt, January 2016
 def time_func(func):
     """
     Returns a function timer with the number of parameters defined by
-    the timed function.
+    the timed function. The timer returns elapsed time in milliseconds.
     """
     
     def timer(*args):
         """
         Function timer with the number of parameters defined by
-        the timed function.
+        the timed function. Returns elapsed time in milliseconds.
         """
         
         import time

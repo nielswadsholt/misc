@@ -8,14 +8,6 @@ from what_you_give import *
 
 
 def base_converter_test():
-    print "dec_to_bin(42)\t-->\t", dec_to_bin(42)
-    print "bin_to_dec(101010)\t-->\t", bin_to_dec(101010)
-    print
-
-    print "bin_to_dec(dec_to_bin(7))\t-->\t", bin_to_dec(dec_to_bin(7))
-    print "dec_to_bin(bin_to_dec(111))\t-->\t", dec_to_bin(bin_to_dec(111))
-    print
-
     print "convert(42, 10, 2)\t-->\t", convert(42, 10, 2)
     print "convert(42, 10, 3)\t-->\t", convert(42, 10, 3)
     print "convert(42, 10, 4)\t-->\t", convert(42, 10, 4)
@@ -39,29 +31,25 @@ def base_converter_test():
     print
 
     print "convert(52, 8, 2)\t-->\t", convert(52, 8, 2)
-    print "convert(52, 8, 3)\t-->\t", convert(52, 8, 3)
-    print "convert(52, 8, 4)\t-->\t", convert(52, 8, 4)
     print "convert(52, 8, 5)\t-->\t", convert(52, 8, 5)
-    print "convert(52, 8, 6)\t-->\t", convert(52, 8, 6)
     print "convert(52, 8, 7)\t-->\t", convert(52, 8, 7)
-    print "convert(52, 8, 8)\t-->\t", convert(52, 8, 8)
-    print "convert(52, 8, 9)\t-->\t", convert(52, 8, 9)
-    print "convert(52, 8, 10)\t-->\t", convert(52, 8, 10)
     print
 
     print "convert(-52, 8, 2)\t-->\t", convert(-52, 8, 2)
-    print "convert(-52, 8, 3)\t-->\t", convert(-52, 8, 3)
-    print "convert(-52, 8, 4)\t-->\t", convert(-52, 8, 4)
     print "convert(-52, 8, 5)\t-->\t", convert(-52, 8, 5)
-    print "convert(-52, 8, 6)\t-->\t", convert(-52, 8, 6)
     print "convert(-52, 8, 7)\t-->\t", convert(-52, 8, 7)
-    print "convert(-52, 8, 8)\t-->\t", convert(-52, 8, 8)
-    print "convert(-52, 8, 9)\t-->\t", convert(-52, 8, 9)
-    print "convert(-52, 8, 10)\t-->\t", convert(-52, 8, 10)
     print
-    
+
     print "convert(convert(1120, 3, 2), 2, 3)\t-->\t", convert(convert(1120, 3, 2), 2, 3)
     print "convert(convert(15206, 7, 3), 3, 7)\t-->\t", convert(convert(15206, 7, 3), 3, 7)
+    print
+
+    print "dec_to_bin(42)\t-->\t", dec_to_bin(42)
+    print "bin_to_dec(101010)\t-->\t", bin_to_dec(101010)
+    print
+
+    print "bin_to_dec(dec_to_bin(7))\t-->\t", bin_to_dec(dec_to_bin(7))
+    print "dec_to_bin(bin_to_dec(111))\t-->\t", dec_to_bin(bin_to_dec(111))
 
 
 def combi_plot_test():
@@ -81,7 +69,7 @@ def combi_plot_test():
 
     print "With everything defined ..."
     combi_plot(y_vals, lbls, range(100, 100 + stop - start),
-               True, 'Y-values', 'X-values', 'Combi Plot', [':', '-.', '--', '-'])
+               True, 'Y-values', 'X-values', 'Combi Plot (log-log)', [':', '-.', '--', '-'])
 
 
 def matrix_multi_test():
@@ -170,12 +158,12 @@ def matrix_multi_test():
 
 def time_func_test():
     print time_func(test1)("Test 1")
-    print time_func(test2)("Test ", 2)
-    print time_func(test3)("Test ", 1, 2)
-    print "Test 4:\nPlotting running times ..."
+    print time_func(test2)("\nTest ", 2)
+    print time_func(test3)("\nTest ", 1, 2)
+    print "\nTest 4:\nPlotting running times ..."
     
     start = 10
-    stop = 100
+    stop = 60
     
     log_array = np.zeros(stop - start, dtype=float)
     lin_array = np.zeros(stop - start, dtype=float)
@@ -187,12 +175,31 @@ def time_func_test():
         lin_array[i - start] = time_func(test4)(i)
         sqr_array[i - start] = time_func(test4)(i**2)
         cub_array[i - start] = time_func(test4)(i**3)
-    del i
     
     y_vals = [log_array, lin_array, sqr_array, cub_array]
     lbls = ['Logarithmic', 'Linear', 'Quadratic', 'Cubic']
 
-    combi_plot(y_vals, lbls, range(start, stop), False, 'Y', 'X', 'Testing time_func()')
+    combi_plot(y_vals, lbls, range(start, stop), False, 'Time (ms)', 'n', 'Testing time_func()')
+    
+    print "\nTest 5:\nFibonacci numbers - regular recursive vs. dynamic programming"
+    n = 25
+    print "n = ", n
+    print "Function:\tResult:\tTime:"
+    print "fib()\t\t", fib(n), "\t", time_func(fib)(n)
+    print "fib_dp()\t", fib_dp(n), "\t", time_func(fib_dp)(n)
+    
+    print "\nTest 6:\nPlotting Fibonacci running times ..."
+    fib_array = np.zeros(n, dtype=float)
+    fib_dp_array = np.zeros(n, dtype=float)
+    
+    for i in range(n):
+        fib_array[i] = time_func(fib)(i + 1)
+        fib_dp_array[i] = time_func(fib_dp)(i + 1)
+    
+    y_vals = [fib_array, fib_dp_array]
+    lbls = ['Regular recursion', 'Dynamic programming']
+
+    combi_plot(y_vals, lbls, range(n), False, 'Time (ms)', 'n', 'Computing the nth Fibonacci number', ['--', '-.'])
 
 def test1(a_str):
     print a_str + ":"
@@ -209,24 +216,45 @@ def test3(a_str, int1, int2):
         count += 1
     print a_str + str(int1+int2) + ":"
 
-def test4(count):
-    for i in range(count):
+def test4(n):
+    for i in range(n):
         time.sleep(0.000000001 * i)
+
+def fib(n):
+    '''
+    Returns the nth Fibonacci number.
+    '''
+    if n <= 2:
+        return (n > 0) * 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+def fib_dp(n, memo = {}):
+    '''
+    Returns the nth Fibonacci number. Dynamic programming version using memoization.
+    '''
+    if n in memo:
+        return memo[n]
+    if n <= 2:
+        return (n > 0) * 1
+    else:
+        memo[n] = fib_dp(n - 1, memo) + fib_dp(n - 2, memo)
+        return memo[n]
 
 
 # =================================== Run tests ===================================
 
-print "\n========== TEST: base_converter =========="
+print "\n\n==================== TEST: base_converter ====================\n"
 base_converter_test()
 
-print "\n========== TEST: combi_plot =========="
+print "\n\n==================== TEST: combi_plot ====================\n"
 combi_plot_test()
 
-print "\n========== TEST: matrix_multi =========="
+print "\n\n==================== TEST: matrix_multi ====================\n"
 matrix_multi_test()
 
-print "\n========== TEST: time_func =========="
+print "\n\n==================== TEST: time_func ====================\n"
 time_func_test()
 
-print "\n========== TEST: what_you_give =========="
+print "\n\n==================== TEST: what_you_give ====================\n"
 print "what_you_get(10) --> ", what_you_get(10)
