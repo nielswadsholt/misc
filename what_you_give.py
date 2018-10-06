@@ -1,7 +1,5 @@
 '''
 What you give is what you get. Illustration of recursive functions.
-
-Copyright (C) 2015-17 Niels Wadsholt
 '''
 
 def what_you_get(what_you_give):
