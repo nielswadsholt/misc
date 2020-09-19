@@ -1,5 +1,5 @@
 # misc
-Small library of assorted python scripts  
+Small library of assorted Python 2.7 scripts  
   
 Contents:  
 base_converter.py - Converts a number from one base to another  
